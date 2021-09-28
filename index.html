@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: rgb(28, 132, 180);
+        }
+        .container{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 96vh;
+        }
+        div{
+            color: white;
+        }
+        #greeting{
+            font-size: 5rem;
+            text-transform: capitalize;
+            width: 100%;
+            text-align: center;
+        }
+        hr{
+            width: 36%;
+        }
+        #time{
+            font-size: 7rem;
+            width: 100%;
+            text-align: center;
+            font-weight: bold;
+        }
+        #date{
+            font-size: 2rem;
+            width: 100%;
+            text-align: center;
+        }
+    </style>
+    <script>
+
+        setInterval(function(){
+        let today = new Date();
+        let day= today.getDate();
+        let month = today.getMonth();
+        let months_name = ["JAN", "FEB", "MAR","APR","MAY","JUNE","JULY","AUG","SEPT","OCT","NOV","DEC"]
+        let year = today.getFullYear();
+
+        let hours = today.getHours();
+        let minutes= today.getMinutes();
+        let seconds = today.getSeconds();
+        let period = "AM"
+        // code for greeting
+        let greeting;
+        if(hours > 0 && hours < 12)
+        {
+            greeting = "good morning";        }
+        else if(hours > 11 && hours < 20)
+        {
+            greeting = "Good evening";
+        }
+        else {
+            greeting = "good night";
+        }
+        //code to change the hours format and add time period
+
+        if(hours == 0) {
+            hours = 12;
+        }
+        else if (hours > 12) {
+        hours = hours - 12;
+        period = "PM";
+        }
+        //code to add zeros using ternary operator
+        
+        day = day < 10 ? `0${day}` : day
+
+        hours = hours < 10 ? `0${hours}` : hours
+        minutes = minutes < 10 ? `0${minutes}` : minutes
+        seconds = seconds < 10 ? `0${seconds}` : seconds
+
+        let mydate = `${day} ${months_name[month]} ${year}`;
+        let mytime = `${hours}:${minutes}:${seconds} ${period}`;
+
+        document.getElementById('greeting').innerText = greeting;
+        document.getElementById('date').innerText = mydate;
+        document.getElementById('time').innerText = mytime;
+        })
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div id="greeting"></div>
+        <hr>
+        <div id="time">time</div>
+        <div id="date">myday</div>
+    </div>
+</body>
+</html>
